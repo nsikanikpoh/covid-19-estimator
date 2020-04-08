@@ -11,36 +11,37 @@ const numberOfDays = (periodType) => {
     case 'weeks':
       return 7;
     case 'months':
-     return 30;
+      return 30;
     default:
       return 0;
   }
-}
+};
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
 
-  //Challenge 1
+  //  Challenge 1
   const impactCurentlyInfected = currentlyInfectedCalc(10, input.reportedCases);
   const severeImpactCurentlyInfected = currentlyInfectedCalc(50, input.reportedCases);
   const days = numberOfDays(input.periodType) * input.timeToElapse;
   const impactEstimate = impactCurentlyInfected * powerEstimate(days);
   const severeImpactEstimate = severeImpactCurentlyInfected * powerEstimate(days);
 
-  //Challenge 2
+  //  Challenge 2
   const impactSevereCasesByRequestedTime = percentageEstimator(15, impactEstimate);
   const severeImpactSevereCasesByRequestedTime = percentageEstimator(15, severeImpactEstimate);
   const bedAvailabitlity = percentageEstimator(35, input.totalHospitalBeds);
-  const impactHospitalBedsByRequestedTime = parseInt(bedAvailabitlity - impactSevereCasesByRequestedTime);
-  const severeImpactHospitalBedsByRequestedTime = parseInt(bedAvailabitlity - severeImpactSevereCasesByRequestedTime);
+  const impactHospitalBedsByRequestedTime = parseInt(bedAvailabitlity) - impactSevereCasesByRequestedTime;
+  const severeImpactHospitalBedsByRequestedTime = parseInt(bedAvailabitlity) - severeImpactSevereCasesByRequestedTime;
 
-  //Challenge 3
+  //  Challenge 3
   const impactCasesForICUByRequestedTime = percentageEstimator(5, impactEstimate);
   const severeImpactCasesForICUByRequestedTime = percentageEstimator(5, severeImpactEstimate);
   const impactCasesForVentilatorsByRequestedTime = percentageEstimator(2, impactEstimate);
   const severeImpactCasesForVentilatorsByRequestedTime = percentageEstimator(2, severeImpactEstimate);
   const impactDollarsInFlight = impactEstimate * input.region.avgDailyIncomeInUSD * input.region.avgDailyIncomePopulation * days;
-  const severeImpactDollarsInFlight = severeImpactEstimate * input.region.avgDailyIncomeInUSD * input.region.avgDailyIncomePopulation * days;
+  const severeImpactDollarsInFlight = (severeImpactEstimate * input.region.avgDailyIncomeInUSD *
+                                        input.region.avgDailyIncomePopulation * days);
 
   return({
     data: input,
@@ -63,6 +64,6 @@ const covid19ImpactEstimator = (data) => {
       dollarsInFlight: severeImpactDollarsInFlight
     }
   });
-}
+};
 
 export default covid19ImpactEstimator;
