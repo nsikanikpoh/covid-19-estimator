@@ -1,22 +1,16 @@
-const percentageEstimator = (percent, estimate) => {
-  return (percent / parseFloat(100)) * estimate ;
-}
+const percentageEstimator = (percent, estimate) => (percent / parseFloat(100)) * estimate;
 
-const powerEstimate = (totalNumberOfDays) => {
-  return 2 ** (totalNumberOfDays / 3);
-}
+const powerEstimate = (totalNumberOfDays) => 2 ** (totalNumberOfDays / 3);
 
-const currentlyInfectedCalc = (num, casesN) => {
-  return num * casesN;
-}
+const currentlyInfectedCalc = (num, casesN) => num * casesN;
 
 const numberOfDays = (periodType) => {
   switch (periodType) {
-    case "days":
+    case 'days':
       return 1;
-    case "weeks":
+    case 'weeks':
       return 7;
-    case "months":
+    case 'months':
      return 30;
     default:
       return 0;
