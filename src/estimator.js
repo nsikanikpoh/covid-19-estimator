@@ -17,6 +17,8 @@ const numberOfDays = (periodType) => {
   }
 };
 
+const float2int = (value) => value | 0;
+
 const covid19ImpactEstimator = (data) => {
   const input = data;
 
@@ -31,8 +33,8 @@ const covid19ImpactEstimator = (data) => {
   const impactSevereCasesByRequestedTime = percentageEstimator(15, impactEstimate);
   const severeImpactSevereCasesByRequestedTime = percentageEstimator(15, severeImpactEstimate);
   const bedAvailabitlity = percentageEstimator(35, input.totalHospitalBeds);
-  const impactHospitalBeds = parseInt(bedAvailabitlity) - impactSevereCasesByRequestedTime;
-  const severeImpactHospitalBeds = (parseInt(bedAvailabitlity)
+  const impactHospitalBeds = float2int(bedAvailabitlity) - impactSevereCasesByRequestedTime;
+  const severeImpactHospitalBeds = (float2int(bedAvailabitlity)
                                           - severeImpactSevereCasesByRequestedTime);
 
   //  Challenge 3
