@@ -1,5 +1,5 @@
 const percentageEstimator = (percent, estimate) => {
-  return ((percent/parseFloat(100)) * estimate ));
+  return ((percent/parseFloat(100)) * estimate );
 }
 
 const powerEstimate = (totalNumberOfDays) =>{
