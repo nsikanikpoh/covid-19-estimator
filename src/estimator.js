@@ -3,8 +3,7 @@ const percentageEstimator = (percent, estimate) => (percent / 100) * estimate;
 const powerEstimate = (totalNumberOfDays) => {
   const div = (totalNumberOfDays / 3);
   const res = (div - (div % 1));
-  const result = 2 ** res;
-  return result;
+  return 2 ** res;
 };
 
 const currentlyInfectedCalc = (num, casesN) => num * casesN;
@@ -18,7 +17,7 @@ const numberOfDays = (periodType, timeToElapse) => {
     case 'months':
       return 30 * timeToElapse;
     default:
-      return 0;
+      return timeToElapse;
   }
 };
 
