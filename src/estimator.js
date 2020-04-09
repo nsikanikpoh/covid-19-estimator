@@ -7,14 +7,14 @@ const powerEstimate = (totalNumberOfDays) => {
 
 const currentlyInfectedCalc = (num, casesN) => num * casesN;
 
-const numberOfDays = (periodType) => {
+const numberOfDays = (periodType, timeToElapse) => {
   switch (periodType) {
     case 'days':
-      return 1;
+      return timeToElapse;
     case 'weeks':
-      return 7;
+      return 7 * timeToElapse;
     case 'months':
-      return 30;
+      return 30 * timeToElapse;
     default:
       return 0;
   }
@@ -28,7 +28,7 @@ const covid19ImpactEstimator = (data) => {
   //  Challenge 1
   const impactCurentlyInfected = currentlyInfectedCalc(10, input.reportedCases);
   const severeImpactCurentlyInfected = currentlyInfectedCalc(50, input.reportedCases);
-  const days = numberOfDays(input.periodType) * input.timeToElapse;
+  const days = numberOfDays(input.periodType, input.timeToElapse);
   const impactEstimate = impactCurentlyInfected * powerEstimate(days);
   const severeImpactEstimate = severeImpactCurentlyInfected * powerEstimate(days);
 
