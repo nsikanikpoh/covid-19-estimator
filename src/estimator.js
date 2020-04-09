@@ -20,6 +20,8 @@ const numberOfDays = (periodType, timeToElapse) => {
   }
 };
 
+const majDailyPay = (percent, amount) => ((0.65 * amount) / percent).toFixed(2);
+
 const covid19ImpactEstimator = (data) => {
   const input = data;
 
@@ -45,11 +47,12 @@ const covid19ImpactEstimator = (data) => {
     severeImpactEstimate));
   const impactCasesForVentilators = Math.floor(percentageEstimator(2, impactEstimate));
   const severeImpactCasesForVentilators = Math.floor(percentageEstimator(2, severeImpactEstimate));
-  const impactDollarsInFlight = Math.floor((impactEstimate * input.region.avgDailyIncomeInUSD
-                                    * input.region.avgDailyIncomePopulation * days));
-  const severeImpactDollarsInFlight = Math.floor((severeImpactEstimate
-                                        * input.region.avgDailyIncomeInUSD
-                                          * input.region.avgDailyIncomePopulation * days));
+  const impactDollarsInFlight = Math.floor((impactEstimate  * 0.65
+                                * majDailyPay(input.region.avgDailyIncomePopulation,
+    input.region.avgDailyIncomeInUSD) * days));
+  const severeImpactDollarsInFlight = Math.floor((severeImpactEstimate * 0.65
+                                        * majDailyPay(input.region.avgDailyIncomePopulation,
+    input.region.avgDailyIncomeInUSD) * days));
 
   return ({
     data: input,
