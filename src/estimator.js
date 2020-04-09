@@ -1,8 +1,10 @@
 const percentageEstimator = (percent, estimate) => (percent / 100) * estimate;
 
 const powerEstimate = (totalNumberOfDays) => {
-  const result = 2 ** (totalNumberOfDays / 3);
-  return (result - (result % 1));
+  const div = (totalNumberOfDays / 3);
+  const res = (div - (div % 1));
+  const result = 2 ** res;
+  return result;
 };
 
 const currentlyInfectedCalc = (num, casesN) => num * casesN;
