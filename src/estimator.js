@@ -36,19 +36,13 @@ const covid19ImpactEstimator = (data) => {
   const impactSevereCasesByRequestedTime = percentageEstimator(15, impactEstimate);
   const severeImpactSevereCasesByRequestedTime = percentageEstimator(15, severeImpactEstimate);
   const bedAvailabitlity = percentageEstimator(35, input.totalHospitalBeds);
-  let impactHospitalBeds;
-  if ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1) {
-    impactHospitalBeds = (Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime);
-  } else {
-    impactHospitalBeds = ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) + 1);
+  let impactHospitalBeds = bedAvailabitlity - impactSevereCasesByRequestedTime;
+  if (!(Number.isInteger(impactHospitalBeds))) {
+    impactHospitalBeds = Math.floor(impactHospitalBeds) + 1;
   }
-  let severeImpactHospitalBeds;
-  if ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1) {
-    severeImpactHospitalBeds = (Math.floor(bedAvailabitlity)
-    - severeImpactSevereCasesByRequestedTime);
-  } else {
-    severeImpactHospitalBeds = ((Math.floor(bedAvailabitlity)
-    - severeImpactSevereCasesByRequestedTime) + 1);
+  let severeImpactHospitalBeds = bedAvailabitlity - severeImpactSevereCasesByRequestedTime;
+  if (!(Number.isInteger(severeImpactHospitalBeds))) {
+    severeImpactHospitalBeds = Math.floor(severeImpactHospitalBeds) + 1;
   }
 
   //  Challenge 3
