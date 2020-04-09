@@ -20,7 +20,7 @@ const numberOfDays = (periodType, timeToElapse) => {
   }
 };
 
-const float2int = (value) => ((value - (value % 1)) + 1);
+const float2int = (value) => (value - (value % 1));
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
