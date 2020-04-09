@@ -51,7 +51,8 @@ const covid19ImpactEstimator = (data) => {
   const impactDollarsInFlight = (impactDollarsInFlightF - (impactDollarsInFlightF % 1));
   const severeImpactDollarsInFlightF = (severeImpactEstimate * input.region.avgDailyIncomeInUSD
                                           * input.region.avgDailyIncomePopulation * days);
-  const severeImpactDollarsInFlight = (severeImpactDollarsInFlightF - (severeImpactDollarsInFlightF % 1));
+  const severeImpactDollarsInFlight = (severeImpactDollarsInFlightF
+                                        - (severeImpactDollarsInFlightF % 1));
 
   return ({
     data: input,
