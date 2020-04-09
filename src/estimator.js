@@ -37,20 +37,16 @@ const covid19ImpactEstimator = (data) => {
   const severeImpactSevereCasesByRequestedTime = percentageEstimator(15, severeImpactEstimate);
   const bedAvailabitlity = percentageEstimator(35, input.totalHospitalBeds);
   let impactHospitalBeds;
-  if((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1)
-  {
+  if ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1) {
     impactHospitalBeds = (Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime);
-  }
-  else{
+  } else {
     impactHospitalBeds = ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) + 1);
   }
   let severeImpactHospitalBeds;
-  if((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1)
-  {
+  if ((Math.floor(bedAvailabitlity) - impactSevereCasesByRequestedTime) > 1) {
     severeImpactHospitalBeds = (Math.floor(bedAvailabitlity)
     - severeImpactSevereCasesByRequestedTime);
-  }
-  else{
+  } else {
     severeImpactHospitalBeds = ((Math.floor(bedAvailabitlity)
     - severeImpactSevereCasesByRequestedTime) + 1);
   }
