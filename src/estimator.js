@@ -42,12 +42,14 @@ const covid19ImpactEstimator = (data) => {
 
   //  Challenge 3
   const impactCasesForICUByRequestedTime = Math.floor(percentageEstimator(5, impactEstimate));
-  const severeImpactCasesForICUByRequestedTime = Math.floor(percentageEstimator(5, severeImpactEstimate));
+  const severeImpactCasesForICUByRequestedTime = Math.floor(percentageEstimator(5,
+                                                      severeImpactEstimate));
   const impactCasesForVentilators = Math.floor(percentageEstimator(2, impactEstimate));
   const severeImpactCasesForVentilators = Math.floor(percentageEstimator(2, severeImpactEstimate));
   const impactDollarsInFlight = Math.floor((impactEstimate * input.region.avgDailyIncomeInUSD
                                     * input.region.avgDailyIncomePopulation * days));
-  const severeImpactDollarsInFlight = Math.floor((severeImpactEstimate * input.region.avgDailyIncomeInUSD
+  const severeImpactDollarsInFlight = Math.floor((severeImpactEstimate
+                                        * input.region.avgDailyIncomeInUSD
                                           * input.region.avgDailyIncomePopulation * days));
 
   return ({
