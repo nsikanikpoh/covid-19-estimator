@@ -1,9 +1,8 @@
 const percentageEstimator = (percent, estimate) => (percent / 100) * estimate;
 
 const powerEstimate = (totalNumberOfDays) => {
-  const div = (totalNumberOfDays / 3);
-  const res = (div - (div % 1));
-  return 2 ** res;
+  const div = Math.floor((totalNumberOfDays / 3));
+  return 2 ** div;
 };
 
 const currentlyInfectedCalc = (num, casesN) => num * casesN;
@@ -42,17 +41,14 @@ const covid19ImpactEstimator = (data) => {
                                           - severeImpactSevereCasesByRequestedTime);
 
   //  Challenge 3
-  const impactCasesForICUByRequestedTime = percentageEstimator(5, impactEstimate);
-  const severeImpactCasesForICUByRequestedTime = percentageEstimator(5, severeImpactEstimate);
-  const impactCasesForVentilators = percentageEstimator(2, impactEstimate);
-  const severeImpactCasesForVentilators = percentageEstimator(2, severeImpactEstimate);
-  const impactDollarsInFlightF = (impactEstimate * input.region.avgDailyIncomeInUSD
-                                    * input.region.avgDailyIncomePopulation * days);
-  const impactDollarsInFlight = (impactDollarsInFlightF - (impactDollarsInFlightF % 1));
-  const severeImpactDollarsInFlightF = (severeImpactEstimate * input.region.avgDailyIncomeInUSD
-                                          * input.region.avgDailyIncomePopulation * days);
-  const severeImpactDollarsInFlight = (severeImpactDollarsInFlightF
-                                        - (severeImpactDollarsInFlightF % 1));
+  const impactCasesForICUByRequestedTime = Math.floor(percentageEstimator(5, impactEstimate));
+  const severeImpactCasesForICUByRequestedTime = Math.floor(percentageEstimator(5, severeImpactEstimate));
+  const impactCasesForVentilators = Math.floor(percentageEstimator(2, impactEstimate));
+  const severeImpactCasesForVentilators = Math.floor(percentageEstimator(2, severeImpactEstimate));
+  const impactDollarsInFlight = Math.floor((impactEstimate * input.region.avgDailyIncomeInUSD
+                                    * input.region.avgDailyIncomePopulation * days));
+  const severeImpactDollarsInFlight = Math.floor((severeImpactEstimate * input.region.avgDailyIncomeInUSD
+                                          * input.region.avgDailyIncomePopulation * days));
 
   return ({
     data: input,
